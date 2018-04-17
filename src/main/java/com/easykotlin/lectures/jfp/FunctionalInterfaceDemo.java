@@ -9,8 +9,13 @@ public class FunctionalInterfaceDemo {
         test1();
         test2();
         test22();
+//        9801
+//        25
+//        25
+
         test3();
         test32();
+
     }
 
     static void test1() {
@@ -20,30 +25,14 @@ public class FunctionalInterfaceDemo {
     }
 
     static void test2() {
-        Function<Integer, Function<Integer, Integer>> f =
-                x -> y -> x * x + y * y;
+        Function<Integer, Function<Integer, Integer>> f = x -> y -> x * x + y * y; // 科里化 Currying
         Integer y = f.apply(3).apply(4);
         out.println(y);
     }
 
     static void test22() {
-        TwoParamsFunction<Integer, Integer, Integer> f =
-                (x, y) -> x * x + y * y;
+        TwoParamsFunction<Integer, Integer, Integer> f = (x, y) -> x * x + y * y;
         Integer y = f.apply(3, 4);
-        out.println(y);
-    }
-
-    static void test3() {
-        Function<Integer, Function<Integer, Function<Integer, Integer>>> f =
-                x -> y -> z -> x * x + y * y + z * z;
-        Integer y = f.apply(3).apply(4).apply(5);
-        out.println(y);
-    }
-
-    static void test32() {
-        ThreeParamsFunction<Integer, Integer, Integer, Integer> f =
-                (x, y, z) -> x * x + y * y + z * z;
-        Integer y = f.apply(3, 4, 5);
         out.println(y);
     }
 
@@ -52,8 +41,21 @@ public class FunctionalInterfaceDemo {
         Output apply(X x, Y y);
     }
 
+    static void test3() {
+        Function<Integer, Function<Integer, Function<Integer, Integer>>> f = x -> y -> z -> x * x + y * y + z * z; // 科里化 Currying
+        Integer y = f.apply(3).apply(4).apply(5);
+        out.println(y);
+    }
+
+    static void test32() {
+        ThreeParamsFunction<Integer, Integer, Integer, Integer> f = (x, y, z) -> x * x + y * y + z * z;
+        Integer y = f.apply(3, 4, 5);
+        out.println(y);
+    }
+
     @FunctionalInterface
     interface ThreeParamsFunction<X, Y, Z, Output> {
         Output apply(X x, Y y, Z z);
     }
+
 }
