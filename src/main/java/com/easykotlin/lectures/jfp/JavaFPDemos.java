@@ -1,4 +1,4 @@
-package com.easykotlin.lectures.fp;
+package com.easykotlin.lectures.jfp;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.easykotlin.lectures.fp
+package com.easykotlin.lectures.kfp
 
 fun filterOddNums(list: List<Int>): List<Int> {
     return list.filter { it % 2 == 1 }
