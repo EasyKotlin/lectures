@@ -1,92 +1,56 @@
 package com.easykotlin.lectures.jfp;
 
 import java.util.Date;
-import java.util.Optional;
-
-import static java.lang.System.out;
 
 public class NullPointerExceptionDemo {
     static NullPointerExceptionDemo demo = new NullPointerExceptionDemo();
 
     public static void main(String[] args) {
-        demo.test1();
+        //demo.test1();
         demo.test2();
     }
 
-
     void test1() {
         try {
-            // object is null
             Milestone nullMilestone = null;
-            Boolean flag = check1(nullMilestone);
-            if (flag) {
-                out.println("A检查通过");
-            } else {
-                out.println("A检查不通过");
-            }
+            check(nullMilestone);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        try {
-            // field is null
-            Milestone milestone = new Milestone();
-            milestone.setName("发布上线");
-            Boolean flag = check1(milestone);
-            if (flag) {
-                out.println("B检查通过");
-            } else {
-                out.println("B检查不通过");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    Boolean check1(Milestone milestone) {
-        return milestone.getFinishTime().before(new Date()) && milestone.getState() == 1;
+        // field is null
+        Milestone milestone = new Milestone();
+        milestone.setName("发布上线");
+        check(milestone);
     }
 
     void test2() {
         try {
-            // object is null
             Milestone nullMilestone = null;
-            Boolean flag = check2(nullMilestone);
-            if (flag) {
-                out.println("C检查通过");
-            } else {
-                out.println("C检查不通过");
-            }
+            check2(nullMilestone);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        try {
-            // field is null
-            Milestone milestone = new Milestone();
-            milestone.setName("发布上线");
-            Boolean flag = check2(milestone);
-            if (flag) {
-                out.println("D检查通过");
-            } else {
-                out.println("D检查不通过");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // field is null
+        Milestone milestone = new Milestone();
+        milestone.setName("发布上线");
+        check2(milestone);
     }
 
-    Boolean check2(Milestone milestone) {
-        if (milestone == null) return false;
-        if (milestone.getFinishTime() != null && milestone.getState() != null) {
-            return milestone.getFinishTime().before(new Date()) && milestone.getState() == 1;
+    Boolean check(Milestone milestone) {// state ==1 && finishTime 在当前时间之前
+        boolean b = milestone.getState() == 1;
+        boolean before = milestone.getFinishTime().before(new Date());
+        return b && before;
+    }
+
+    Boolean check2(Milestone milestone) {// state ==1 && finishTime 在当前时间之前
+        if (null == milestone) return false;
+        if (milestone.getState() != null && milestone.getFinishTime() != null) {
+            boolean b = milestone.getState() == 1;
+            boolean before = milestone.getFinishTime().before(new Date());
+            return b && before;
         }
         return false;
     }
-
-//    java 8 用Optional取代 null
-//    See: OptionalDemo
 
 }
 

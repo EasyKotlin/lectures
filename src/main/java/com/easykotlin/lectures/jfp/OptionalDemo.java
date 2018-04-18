@@ -4,56 +4,45 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 
-import static java.lang.System.out;
-
 public class OptionalDemo {
+
     static OptionalDemo demo = new OptionalDemo();
 
-    public static void main(String[] args) {
+    public static void main(String[] aggs) {
         demo.test1();
     }
 
+
     void test1() {
-
         try {
-            Optional<Milestone> nullMilestone = Optional.of(null);
-            Boolean flag = check1(nullMilestone);
-
-            if (flag) {
-                out.println("A检查通过");
-            } else {
-                out.println("A检查不通过");
-            }
+            Milestone nullMilestone = null;
+            check(nullMilestone);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         // field is null
-        Optional<Milestone> milestone = Optional.of(new Milestone());
-        milestone.get().setName("发布上线");
-        Boolean flag = check1(milestone);
-        if (flag) {
-            out.println("B检查通过");
-        } else {
-            out.println("B检查不通过");
-        }
+        Milestone milestone = new Milestone();
+        milestone.setName("发布上线");
+        check(milestone);
     }
 
-    Boolean check1(Optional<Milestone> milestone) {
-        if (milestone.isPresent()) {
-            Milestone m = milestone.get();
-            Optional<Date> finishTime = Optional.ofNullable(m.getFinishTime());
-            Boolean b1 = finishTime.orElse(getOneDayAfter(new Date())).before(new Date());
-            Optional<Integer> state = Optional.ofNullable(m.getState());
-            Boolean b2 = state.orElse(-1) == 1;
+
+    Boolean check(Milestone milestone) {
+        Optional<Milestone> milestoneOptional = Optional.ofNullable(milestone);
+        if (milestoneOptional.isPresent()) {
+            Optional<Date> finishTimeOptional = Optional.ofNullable(milestoneOptional.get().getFinishTime());
+            Optional<Integer> stateOptional = Optional.ofNullable(milestoneOptional.get().getState());
+            Boolean b1 = finishTimeOptional.orElse(getOneDayAfterNow(new Date())).before(new Date());
+            Boolean b2 = stateOptional.orElse(-1) == 1;
             return b1 && b2;
         }
         return false;
     }
 
-    Date getOneDayAfter(Date now) {
+    private Date getOneDayAfterNow(Date date) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(now.getTime() + 1000 * 3600 * 24);
+        calendar.setTimeInMillis(date.getTime() + 1000 * 3600 * 24);
         return calendar.getTime();
     }
+
 }
