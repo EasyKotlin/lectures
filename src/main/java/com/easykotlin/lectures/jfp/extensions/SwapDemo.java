@@ -2,7 +2,6 @@ package com.easykotlin.lectures.jfp.extensions;
 
 import java.util.Arrays;
 import java.util.List;
-
 import static java.lang.System.out;
 
 public class SwapDemo {
@@ -11,6 +10,7 @@ public class SwapDemo {
         CollectionUtils collectionUtils = new CollectionUtils();
         collectionUtils.swap(list, 1, 2);
         out.println(list);
+        // list.swap(1,2)
     }
 }
 

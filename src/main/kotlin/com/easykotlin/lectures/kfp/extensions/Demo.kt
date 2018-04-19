@@ -1,25 +1,17 @@
 package com.easykotlin.lectures.kfp.extensions
 
 fun main(args: Array<String>) {
-    val list = arrayListOf(1, 2, 3)
+    val list = mutableListOf(1, 2, 3)
     list.swap(1, 2)
     println(list)
 }
 
-fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
+private fun <E> MutableList<E>.swap(index1: Int, index2: Int) {
     val e1 = this[index1]
     val e2 = this[index2]
     this[index1] = e2
     this[index2] = e1
 }
-
-
-
-
-
-
-
-
 
 
 /**

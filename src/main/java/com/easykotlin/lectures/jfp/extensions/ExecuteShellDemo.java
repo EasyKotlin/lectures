@@ -12,6 +12,8 @@ public class ExecuteShellDemo {
         ExecuteShellDemo demo = new ExecuteShellDemo();
         String result = demo.execute("tree");
         out.println(result);
+        // "tree".execute()
+        // "tree"!!
     }
 
     String execute(String cmd) throws IOException {

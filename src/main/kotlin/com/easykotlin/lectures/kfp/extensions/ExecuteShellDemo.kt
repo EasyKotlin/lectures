@@ -5,7 +5,7 @@ import java.io.File
 import java.io.InputStreamReader
 
 fun main(args: Array<String>) {
-    //readText()
+    readText()
     val result = "tree".execute();
     println(result)
 }
@@ -20,7 +20,7 @@ private fun String.execute(): String {
     var line: String? = ""
     while (line != null) {
         line = bufferedReader.readLine()
-        result = "$result$line\n"
+        result = "$result$line\n" // Kotlin 的字符串模板 ${a.xx()}
     }
     return result
 }
