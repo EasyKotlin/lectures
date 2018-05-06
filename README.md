@@ -12,3 +12,9 @@ Spring Boot 是由 Pivotal 团队提供的全新框架，其设计目的是用�
 
 
 本系列课程介绍了基于 Gradle + Kotlin 、使用 Spring Boot 2.0 框架来开发企业级应用的最佳实践。我希望通过简练的表述、详细的演示，系统全面地介绍如何使用 Spring Boot 2.0 框架开发项目，以及如何 Kotlin 进行实际的服务端项目的开发。
+
+Gradle 执行测试命令：
+
+```
+$ gradle clean test --info
+```
